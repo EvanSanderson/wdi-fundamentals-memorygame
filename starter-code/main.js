@@ -1,9 +1,7 @@
 
+ var cards = ['queen', 'queen', 'king', 'king'];
+ var cardsInPlay = [];
 
-var cardOne = 'queen';
-var cardTwo = 'queen';
-var cardThree = 'king';
-var cardFour = 'king';
 
 var gameBoard = document.getElementById('game-board');
 
@@ -14,13 +12,39 @@ var gameBoard = document.getElementById('game-board');
 };*/
 
 var createBoard = function() {
-	for (i=0; i<=3; ++i) {
+
 	var newCard = document.createElement('div');
-	newCard.className = 'card';
-	document.getElementByClassName('card').appendChild('board');
-	/* above line could also read newCard.appendChild('board')*/
+	
+		newCard.className = 'card';
+	
+		document.getElementByClassName('card').appendChild('board');
+
+	for (i=0; i<cards; i += 1) {
+
+		cardElement.setAttribute('data-card', cards[i]);
+
+		cardElement.addEventListener('click', isTwoCards);
+
+		if (cardElement.getAttribute('data-card') === 'queen') {
+			cardElement.innerHTML = '<img src="queen.png" alt="Queen of Clubs" />';
+		} else if (cardElement.getAttribute('data-card') === 'king') {
+			cardElement.innerHTML = '<img src="king.png" alt="King of Clubs" />';
+		};
+
 	};
 };
+
+var isMatch = function() {
+	function isTwoCards() {
+	cardsInPlay.push(this.getAttribute('data-card'));
+	if (cardsInPlay.length === 2) {
+		isMatch(cardsInPlay);
+		cardsInPlay = [];
+		}
+	}
+
+};
+
 
 createBoard();
 
