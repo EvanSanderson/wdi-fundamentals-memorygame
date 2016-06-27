@@ -12,7 +12,8 @@
 	height: 200px;
 	width: 150px;
 	border: 1px solid black;
-	background: #FFFF00;
+	background: url("back.png");
+	background-size: cover;
 	border-radius: 10px;
 	margin: 2em;
 	padding: 1em;
@@ -67,4 +68,10 @@ footer {
 
 header, footer, p {
 	text-align: center;
+}
+
+img {
+	width: 220px;
+	height: 220px;
+
 }

@@ -3,54 +3,44 @@
  var cardsInPlay = [];
 
 
-var gameBoard = document.getElementById('game-board');
-
-/*for (i=1;i<=4; ++i) {
-	var newCard = document.createElement('div');
-	newCard.className = 'card';
-	document.getElementById('card')[i].appendChild('board');
-};*/
+var board = document.getElementById('game-board');
 
 var createBoard = function() {
+  for (i=1;i<=cards.length; ++i) {
+  	var newCard = document.createElement('div');
+    newCard.className = 'card';
+  	newCard.setAttribute('data-card', cards[i]);
+    newCard.addEventListener("click", isTwoCards);
+  	board.appendChild(newCard);
+  }
 
-	var newCard = document.createElement('div');
-	
-		newCard.className = 'card';
-	
-		document.getElementByClassName('card').appendChild('board');
+};
 
-	for (i=0; i<cards; i += 1) {
+function isTwoCards() {
+  cardsInPlay.push(this.getAttribute('data-card'));
 
-		cardElement.setAttribute('data-card', cards[i]);
+		if (this.getAttribute('data-card') === 'queen') {
 
-		cardElement.addEventListener('click', isTwoCards);
+			this.innerHTML = '<img src="queen.png" alt="Queen of Clubs" />';
 
-		if (cardElement.getAttribute('data-card') === 'queen') {
-			cardElement.innerHTML = '<img src="queen.png" alt="Queen of Clubs" />';
-		} else if (cardElement.getAttribute('data-card') === 'king') {
-			cardElement.innerHTML = '<img src="king.png" alt="King of Clubs" />';
+		} else if (this.getAttribute('data-card') === 'king') {
+
+			this.innerHTML = '<img src="king.png" alt="King of Clubs" />';
 		};
 
-	};
+if (cardsInPlay.length ===2) {
+  isMatch(cardsInPlay);
+  cardsInPlay =[];
+  };
 };
+
 
 var isMatch = function() {
-	function isTwoCards() {
-	cardsInPlay.push(this.getAttribute('data-card'));
-	if (cardsInPlay.length === 2) {
-		isMatch(cardsInPlay);
-		cardsInPlay = [];
-		}
-	}
-
+  if (cards[0] === cards[1]) {
+  	alert('You found a match!');
+} else {
+  alert('Try again!')
+}
 };
 
-
 createBoard();
-
-
-
-
-/*if (cardOne === cardTwo) {
-	alert('You found a match!');
-}*/
